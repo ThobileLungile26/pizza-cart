@@ -53,7 +53,7 @@
                 if(!this.paymentAmount){
                     this.paymentMessage ='Sorry - that is not enough money!'
                 }
-                if (this.paymentAmount >= this.cartTotal()) {
+                if (this.paymentAmount > this.pizzaCartTotal()) {
                     paymentMessage='Enjoy your pizzas!'
 
                     setTimeout(() => {

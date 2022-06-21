@@ -13,6 +13,9 @@
             align-items: center;
 
         }
+        .pizza {
+            flex: 1;
+        }
 
         .img_smallpizza{
             width: 160px;
@@ -39,6 +42,7 @@
             background-color: rgb(243, 231, 233);
             align-items: center;
             justify-content: center;
+            flex: 1;
         }
     }
 
@@ -92,11 +96,14 @@
             align-content: center;
             background-color: #386641;
             border: 1px solid;
+            padding: 0.5em;
+            margin: 2em;
             border-collapse: collapse;
             font-size: large;
-            table-layout: auto;
-            padding-inline-start: 1em;
-            margin-inline-end: 30%;
+            table-layout: fixed;
+            width: 50%;
+            
+            
         }
         button {
             background-color: rgb(212, 209, 24);
