@@ -28,7 +28,7 @@
             rmLarge(){
                 if (this.largeQty > 0 ) {
                     this.largepizzaTotal-=110.99;
-                    this.largepizzaTotal-=1
+                    this.largeQty-=1
                 }
             }, 
             buyMedium(){
@@ -37,7 +37,7 @@
             },
             rmMedium(){
                 if (this.mediumQty > 0 ) {
-                    this.mediumpizzaTotal-+78.99;
+                    this.mediumpizzaTotal-=78.99;
                     this.mediumQty-=1
                 }
             },
@@ -49,17 +49,18 @@
                 this.mediumpizzaTotal = 0;
                 this.mediumQty = 0
             },
-            makePayment(){
+            makePayment() {
                 if(!this.paymentAmount){
-                    this.paymentMessage ='Sorry - that is not enough money!'
+                    this.paymentMessage ='Enter correct amount!'
                 }
-                if (this.paymentAmount > this.pizzaCartTotal()) {
-                    paymentMessage='Enjoy your pizzas!'
+                else if (this.paymentAmount >= this.pizzaCartTotal()){
+                this.paymentMessage='Enjoy your pizza!'
 
                     setTimeout(() => {
                         this.clearCart()
+                        this.paynow = false
                         this.checkOut = false;
-                    },3000);
+                    },4000);
 
                 } else {
                     this.paymentMessage ='Sorry - that is not enough money!'
@@ -74,8 +75,11 @@
         }">
 
         <div class="header">
+            <div class="f3 header" x-show="!showCart">
             <h1>Perfect Pizza</h1>
-            <div class="trolley">
+        </div>
+
+            <div class="trolley" x-show ="totalQty() > 0">
                 <button @click="showCart=true" x-show="!showCart">
                     <img src="shopping-cart.png" width="30" alt="">Pizza Orders
                     <strong x-show="totalQty() > 0">
@@ -89,10 +93,6 @@
 
                     <button @click="showCart=false"><img src="shopping-cart.png" width="30" alt=""> Close</button>
 
-                    <!--<div class="">
-                        <h2>Shopping cart <img src="shopping-cart.png" width="30" alt="">
-                        </h2>
-                    </div>-->
                     <table>
                         <tr x-show="smallQty > 0">
                             <td>Small Pizza</td>
@@ -151,7 +151,7 @@
                                 </div>
 
                             </td>
-                            <td>
+                            <td x-show ="totalQty() > 0 ">
                                 <button x-show="!payNow" x-on:click="payNow =true" x-show class="Btn">
                                     <img src="shopping-cart.png" width="20" alt="">Pay</button>
                             </td>
