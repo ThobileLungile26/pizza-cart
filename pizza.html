@@ -11,7 +11,7 @@
 <script src="//unpkg.com/alpinejs" defer></script>
 
 <body>
-    <div class="container" x-data="{ showCart:false,smallpizzaTotal: 0.00, smallQty:0, largepizzaTotal: 0.00, largeQty: 0, mediumpizzaTotal: 0.00, mediumQty: 0, payNow : false, paymentAmount : 0, paymentMessage : '',
+    <div class="container" x-data="{ showCart:false,smallpizzaTotal: 0.00, smallQty:0, largepizzaTotal: 0.00, largeQty: 0, mediumpizzaTotal: 0.00, mediumQty: 0, checkOut : false, paymentAmount : 0, paymentMessage : '',
         buySmall(){
             this.smallpizzaTotal+=68.99;
             this.smallQty+=1},
@@ -57,9 +57,9 @@
                 this.paymentMessage='Enjoy your pizza!'
 
                     setTimeout(() => {
-                        this.clearCart()
-                        this.paynow = false
-                        this.checkOut = false;
+                        this.rmCart()
+                        this.checkOut = false
+                        this.showCart = false;
                     },4000);
 
                 } else {
@@ -138,7 +138,7 @@
                         </tr>
                         <tr>
                             <td colspan="2">
-                                <div x-show="payNow">
+                                <div x-show="checkOut">
                                     <div class="message" x-text="paymentMessage"></div>
                                     <div>
                                         <label for="">Payment Amount</label>
@@ -152,7 +152,7 @@
 
                             </td>
                             <td x-show ="totalQty() > 0 ">
-                                <button x-show="!payNow" x-on:click="payNow =true" x-show class="Btn">
+                                <button x-show="!checkOut" x-on:click="checkOut =true" x-show class="Btn">
                                     <img src="shopping-cart.png" width="20" alt="">Pay</button>
                             </td>
                         </tr>
